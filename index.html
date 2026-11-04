@@ -1,1 +1,246 @@
 
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>How Does the Indian Constitution Protect Ordinary Citizens?</title>
+<style>
+@property --hue{syntax:'<number>';inherits:true;initial-value:28}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden;touch-action:none;background:#f5f5f7}
+body{--hue:28;transition:--hue 2s ease;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",Roboto,sans-serif;color:#1d1d1f;-webkit-font-smoothing:antialiased}
+.bg{position:fixed;inset:0;overflow:hidden;background:radial-gradient(120% 90% at 50% 0%,#fff,#f5f5f7 70%)}
+.orbs{position:absolute;inset:0}
+.orb{position:absolute;border-radius:50%;opacity:.75;will-change:transform}
+.o1{width:62vmax;height:62vmax;left:-18vmax;top:-22vmax;background:radial-gradient(circle,hsl(var(--hue) 95% 74%),transparent 68%);animation:d1 26s ease-in-out infinite alternate}
+.o2{width:56vmax;height:56vmax;right:-20vmax;top:6vmax;background:radial-gradient(circle,hsl(calc(var(--hue) + 70) 90% 76%),transparent 68%);animation:d2 30s ease-in-out infinite alternate}
+.o3{width:52vmax;height:52vmax;left:14vmax;bottom:-28vmax;background:radial-gradient(circle,hsl(calc(var(--hue) + 150) 85% 74%),transparent 68%);animation:d3 34s ease-in-out infinite alternate}
+@keyframes d1{to{transform:translate(14vmax,12vmax) scale(1.2)}}
+@keyframes d2{to{transform:translate(-16vmax,8vmax) scale(.85)}}
+@keyframes d3{to{transform:translate(10vmax,-14vmax) scale(1.15)}}
+.stage{position:fixed;inset:0;perspective:1200px}
+.slide{--e:1;--x:-1;--hd:0s;--cd:.7s;--sg:0s;position:absolute;inset:0;pointer-events:none;visibility:hidden}
+.slide.on,.slide.out{visibility:visible}
+.nt,.nt *{transition:none!important;animation:none!important}
+.head{position:absolute;left:50%;top:50%;width:min(92vw,1040px);text-align:center;transform:translate(-50%,-50%);transition:top 1.8s cubic-bezier(.16,1,.3,1),transform 1.8s cubic-bezier(.16,1,.3,1);transition-delay:.3s;z-index:10}
+.slide.rev .head{top:13%;transform:translate(-50%,-50%) scale(.5);transition-delay:var(--hd)}
+.eb{margin-bottom:1.1rem;font-size:1.25rem;font-weight:600}
+.eb .w{color:hsl(var(--hue) 75% 42%)}
+h2{font-size:clamp(2.1rem,5.8vw,5rem);font-weight:700;letter-spacing:-.05em;line-height:1.04}
+h2 .w{background:linear-gradient(180deg,#1d1d1f 45%,#4b4b52);-webkit-background-clip:text;background-clip:text;color:transparent;padding:0 .04em}
+.w{display:inline-block;opacity:0;filter:blur(16px);transform:translateY(calc(var(--e)*.9em)) rotateX(calc(var(--e)*-60deg)) scale(.85);transition:opacity 1.4s ease,filter 1.4s ease,transform 1.8s cubic-bezier(.16,1,.3,1)}
+.slide.on .w{opacity:1;filter:none;transform:none;transition-delay:calc(var(--w)*.13s)}
+.slide.out .w{opacity:0;filter:blur(14px);transform:translateY(calc(var(--x)*.6em)) scale(1.1);transition-delay:calc(.4s + var(--w)*.05s);transition-duration:1s,1s,1.2s}
+
+/* ===== DYNAMIC CARD GRID ===== */
+.cards{position:absolute;left:50%;top:26%;transform:translateX(-50%);width:min(94vw,1120px);display:grid;gap:18px;grid-template-columns:repeat(2,1fr)}
+/* When 6 items exist, switch to 3 columns */
+.cards.six-cards{grid-template-columns:repeat(3,1fr)}
+
+/* ===== LIQUID GLASS CARD ===== */
+.card{
+  --dl:calc((var(--n) - 1 - var(--i))*.05s);
+  position:relative;overflow:hidden;
+  padding:24px 26px;
+  border-radius:30px;
+  background: linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,.18) 45%,rgba(255,255,255,.30));
+  -webkit-backdrop-filter:blur(28px) saturate(200%);
+  backdrop-filter:blur(28px) saturate(200%);
+  border:1px solid rgba(255,255,255,.85);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.95), inset 0 -1px 1px rgba(255,255,255,.45), inset 0 0 40px rgba(255,255,255,.25), 0 0 0 1px rgba(0,0,0,.04), 0 22px 48px -12px rgba(60,70,120,.22), 0 8px 20px -8px hsl(var(--hue) 70% 55% / .18);
+  opacity:0;transform:translateY(calc(var(--e)*70px)) scale(.55);
+  transition-property:opacity,transform,scale,box-shadow;
+  transition-duration:1s,1.7s,.5s,.5s;
+  transition-timing-function:ease,cubic-bezier(.2,1.25,.3,1),ease,ease;
+  transition-delay:var(--dl),var(--dl),0s,0s;
+}
+
+/* liquid refraction highlight */
+.card::before{
+  content:"";position:absolute;inset:-30% -20%;
+  background: radial-gradient(60% 80% at 15% 0%,rgba(255,255,255,.9),transparent 60%), radial-gradient(50% 60% at 90% 100%,hsl(var(--hue) 90% 80% / .55),transparent 70%);
+  opacity:.9;pointer-events:none;mix-blend-mode:screen;
+  transform:translateX(-20%);
+}
+/* sheen sweep */
+.card::after{
+  content:"";position:absolute;inset:-40% -60%;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.95) 50%,transparent 58%);
+  transform:translateX(-130%);pointer-events:none;
+}
+.slide.on .card.show::before{animation:caustic 6s ease-in-out infinite alternate}
+@keyframes caustic{
+  0%{transform:translateX(-18%) scale(1)}
+  100%{transform:translateX(18%) scale(1.08)}
+}
+.slide.on .card.show::after{animation:sheen 1.8s cubic-bezier(.4,0,.2,1) both;animation-delay:calc(var(--dl) + .5s)}
+@keyframes sheen{to{transform:translateX(130%)}}
+
+.slide.on .card.show{
+  --dl:calc(var(--cd) + var(--i)*var(--sg));
+  opacity:1;transform:none;pointer-events:auto;
+}
+.slide.out .card{
+  --dl:calc((var(--n) - 1 - var(--i))*.05s);
+  opacity:0;transform:translateY(calc(var(--x)*70px)) scale(1.1);
+  transition-duration:.9s,1.1s,.5s,.5s;
+}
+
+/* hover glow */
+.card .glow{
+  position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;
+  transition:opacity .4s;
+  background:radial-gradient(240px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.95),hsl(var(--hue) 90% 80% / .35) 30%,transparent 62%);
+  mix-blend-mode:screen;
+}
+.card:hover .glow{opacity:1}
+.slide.on .card.show:hover{scale:1.025}
+
+.t{position:relative;font-size:.82rem;font-weight:600;color:hsl(var(--hue) 75% 40%);margin-bottom:.55rem;letter-spacing:.01em}
+h3{position:relative;font-size:1.35rem;font-weight:650;letter-spacing:-.025em;margin-bottom:.55rem;line-height:1.2}
+.card p{position:relative;font-size:.98rem;line-height:1.55;color:#4c4c54}
+
+/* dots + hint */
+.dots{position:fixed;right:max(14px,env(safe-area-inset-right));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:2px;z-index:5}
+.dots i{box-sizing:content-box;width:5px;height:5px;padding:5px;background:#1d1d1f;background-clip:content-box;border-radius:10px;opacity:.22;cursor:pointer;transition:height .8s cubic-bezier(.16,1,.3,1),opacity .8s}
+.dots i.a{height:22px;opacity:.9}
+.hint{position:fixed;left:50%;bottom:max(28px,env(safe-area-inset-bottom));width:24px;height:38px;margin-left:-12px;border:1.5px solid #1d1d1f;border-radius:14px;opacity:.4;transition:opacity 1s}
+.hint::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:3px;background:#1d1d1f;animation:sc 1.8s ease-in-out infinite}
+.hint.hide{opacity:0}
+@keyframes sc{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
+
+@media(max-width:900px){
+  .cards,.cards.six-cards{grid-template-columns:1fr 1fr;gap:12px;top:22%}
+  .card{padding:18px 18px;border-radius:24px}
+  h3{font-size:1.1rem}
+  .card p{font-size:.86rem}
+}
+@media(max-width:700px){
+  .cards,.cards.six-cards{gap:10px;top:20%;width:92vw}
+  .slide.rev .head{top:9.5%;transform:translate(-50%,-50%) scale(.6)}
+  .card{padding:14px 15px;border-radius:20px}
+  h3{font-size:.95rem;margin-bottom:.35rem}
+  .card p{font-size:.74rem;line-height:1.4}
+  .t{font-size:.65rem;margin-bottom:.35rem}
+  .eb{font-size:1rem}
+}
+@media(max-width:480px){
+  .cards,.cards.six-cards{grid-template-columns:1fr;top:18%;gap:9px}
+  .card{padding:12px 14px}
+  h3{font-size:.9rem}
+  .card p{font-size:.72rem}
+}
+@media(prefers-reduced-motion:reduce){.orb{animation:none}.slide.on .card.show::before{animation:none}}
+</style>
+</head>
+<body>
+<div class="bg"><div class="orbs" id="orbs"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div></div>
+<div class="stage" id="stage"></div>
+<div class="dots" id="dots"></div>
+<div class="hint" id="hint"></div>
+<script>
+const S=[
+{hue:28,e:"A citizen’s guide",h:"How does the Indian Constitution protect ordinary citizens?",c:[
+["Adopted · 26 Nov 1949","The day India gave itself a rulebook","After nearly three years of debate, the Constituent Assembly adopted the Constitution. Dr B. R. Ambedkar chaired the Drafting Committee, turning thousands of voices into one binding document."],
+["In force · 26 Jan 1950","The republic is born","On this day, the Constitution came into force and India became a sovereign democratic republic. Citizens gained enforceable rights that courts could uphold against the State."],
+["The longest constitution","A living, detailed charter","It is the longest written constitution of any sovereign nation. Its length is deliberate: it anticipates the situations an ordinary person might face, leaving little to the whim of rulers."],
+["We, the People","Authority flows from citizens","The Preamble opens with “We, the People of India”, meaning all power originates with citizens. No one stands above the law, and no right exists only on paper."]]},
+
+{hue:235,e:"The Preamble",h:"We, the People of India",c:[
+["Sovereign & republic","Free, and ruled by consent","India makes its own laws without foreign authority. The head of state is elected, never hereditary, and power is exercised through institutions the people can hold to account."],
+["Socialist & secular","Added by the 42nd Amendment","The State works for the welfare of all and treats every faith with equal respect. Secularism means the State has no religion of its own and cannot favour one community over another."],
+["Justice & liberty","Fairness with freedom","The Preamble promises social, economic and political justice alongside liberty of thought and expression. Freedom without fairness is privilege; fairness without freedom is control."],
+["Equality & fraternity","Equal status, shared dignity","It guarantees equality of status and opportunity, and fraternity that protects dignity while keeping the nation united. These are the aims courts use to interpret every right that follows."]]},
+
+{hue:155,e:"Part III · Articles 12–35",h:"Six Fundamental Rights",c:[
+["Articles 14–18","Right to Equality","Equality before the law, no discrimination on religion, race, caste, sex or birthplace, equal opportunity in public jobs, the abolition of untouchability, and the bar on hereditary titles."],
+["Articles 19–22","Right to Freedom","Six core freedoms — speech, assembly, movement, profession — plus protection in criminal cases and the right to life and personal liberty. Restrictions must be reasonable."],
+["Articles 23–24","Against Exploitation","Bans human trafficking, forced labour (begar), and the employment of children under 14 in factories, mines, or other hazardous work."],
+["Articles 25–28","Freedom of Religion","Freedom of conscience and the right to profess, practise and propagate religion. Article 28 bars compulsory religious instruction in State-funded schools."],
+["Articles 29–30","Cultural & Educational","Protects the language, script and culture of any section of citizens, and allows minorities to establish and administer their own educational institutions."],
+["Article 32","Remedies","The right to move the Supreme Court directly to enforce Fundamental Rights. Dr Ambedkar called it the heart and soul of the Constitution."]]},
+
+{hue:190,e:"Right to Equality",h:"No one is above the law",c:[
+["Articles 14 & 15","Equality before law","Article 14 guarantees equal protection of the laws. Article 15 forbids discrimination, but permits special provisions for women, children and weaker sections."],
+["Article 16","Equal chance at jobs","Everyone has equal opportunity in public employment. Reservation for backward classes is allowed to achieve substantive equality."],
+["Article 17","Untouchability abolished","Practising untouchability in any form is forbidden and punishable under the Protection of Civil Rights Act, 1955. Dignity must be actively defended."],
+["Articles 18 & Landmark","No titles & Indra Sawhney","The State cannot confer hereditary titles. In Indra Sawhney (1992), the Supreme Court upheld 27% OBC reservation, excluded the creamy layer, and set a 50% ceiling."]]},
+
+{hue:285,e:"Right to Freedom",h:"Your voice. Your liberty.",c:[
+["Article 19(1)","Six core freedoms","Speech, peaceful assembly, association, movement, residence and profession. These are the baseline freedoms of a free citizen, not privileges to be granted."],
+["Articles 19(2)–(6)","Reasonable limits","Freedoms can be restricted only on specified grounds like public order or decency. Courts review restrictions to ensure the State does not silence dissent."],
+["Articles 20 & 22","Safe in criminal cases","Bars punishment under a later law, double punishment and forced self-incrimination. An arrested person must be told why, may consult a lawyer, and see a magistrate within 24 hours."],
+["Article 21 & Landmark","Life, liberty & Shreya Singhal","No one can lose life or liberty except by a fair procedure. In Shreya Singhal (2015), the Court struck down Section 66A of the IT Act, protecting free speech online."]]},
+
+{hue:340,e:"Article 21 grows",h:"Life means a life of dignity",c:[
+["Maneka Gandhi (1978)","Fair, just and reasonable","In a passport case, the Court held that any procedure restricting liberty must be fair, just and reasonable. This transformed Article 21 into a source of substantive rights."],
+["Olga Tellis & Puttaswamy","Livelihood and privacy","Olga Tellis held that life includes the right to livelihood. In Puttaswamy (2017), a nine-judge bench declared privacy a fundamental right under Article 21."],
+["Article 21A & RTE Act","Education for every child","Added by the 86th Amendment, Article 21A guarantees free and compulsory education for ages 6 to 14. The RTE Act requires private schools to reserve 25% of seats for disadvantaged children."],
+["Hussainara Khatoon (1979)","Speedy trial","The Court recognised speedy trial as part of Article 21 and ordered the release of undertrial prisoners. Liberty delayed is liberty denied."]]},
+
+{hue:40,e:"Articles 23–30",h:"Dignity, faith and fairness",c:[
+["Articles 23 & 24","No trafficking or child labour","Article 23 bans trafficking and forced labour; Article 24 forbids employing children under 14 in hazardous work. Both treat exploitation as an assault on dignity."],
+["Bandhua Mukti Morcha (1984)","Freeing bonded labour","The Court ordered the identification, release and rehabilitation of bonded labourers, showing that courts can act on the reality of exploitation, not just statute wording."],
+["Articles 25 & 28","Freedom of religion","Everyone may profess and practise their faith, subject to public order. Article 28 bars compulsory religious instruction in State-funded schools."],
+["Articles 29 & 30","Minority rights","Minorities may conserve their language and culture and administer their own educational institutions, ensuring no community must lose its identity to belong."]]},
+
+{hue:175,e:"Articles 32 & 226",h:"A right without a remedy is empty",c:[
+["Article 32","Supreme Court writs","Approach the Supreme Court directly when a Fundamental Right is violated. Dr Ambedkar called it the heart and soul of the Constitution, giving every citizen a direct door to the highest court."],
+["Article 226","High Court writs","High Courts can issue writs for Fundamental Rights and other legal rights, giving them broader jurisdiction than Article 32. Most citizens find their first remedy here."],
+["Habeas corpus & mandamus","Produce the person; command duty","Habeas corpus orders a detained person be produced in court. Mandamus commands an official to perform a public duty. Together they turn rights into concrete orders."],
+["Prohibition, certiorari & PIL","Checking power, opening the door","Prohibition stops a lower court overstepping; certiorari quashes an unlawful order; quo warranto asks by what authority. PIL lets anyone file for the poor."]]},
+
+{hue:260,e:"Part IV & Article 51A",h:"Goals for the State, duties for us",c:[
+["Articles 36–51","Directive Principles","Not enforceable in court, but fundamental in governance. They guide laws toward a welfare state, and courts use them to interpret rights and test whether a law serves the common good."],
+["Articles 39, 41 & 45","Livelihood and early care","The State must secure adequate means of livelihood, equal pay for equal work, and protection of children. It should also provide the right to work, education and care for children below six."],
+["Article 47","Health and nutrition","The State must raise nutrition and public health and prohibit harmful intoxicants. The Constitution cares about the ordinary conditions of life, not only formal freedoms."],
+["Article 51A","Fundamental Duties","Respect the Constitution, flag and anthem; protect the environment; safeguard public property. Rights protect you; duties ask you to respect others’ rights."]]},
+
+{hue:20,e:"In conclusion",h:"The Constitution protects you, if you use it",c:[
+["Kesavananda Bharati (1973)","Basic structure doctrine","Parliament can amend the Constitution but cannot destroy its core features, like judicial review or free elections. This prevents a powerful majority from dismantling the framework."],
+["Judicial review","Courts check power","Courts can strike down laws and actions that violate the Constitution. Without this power, rights would be mere declarations, and the Constitution would be advice rather than law."],
+["Independent judiciary & EC","Free judges, fair elections","Security of tenure lets judges decide without fear, while the Election Commission conducts free elections. Together they protect impartial justice and a trustworthy vote."],
+["NHRC & your role","Know it. Use it.","The National Human Rights Commission inquires into violations. But the final safeguard is you: knowing your rights and duties turns the Constitution from words on paper into real protection."]]}
+];
+
+const $=id=>document.getElementById(id);
+const stage=$("stage"),dots=$("dots"),hint=$("hint"),orbs=$("orbs");
+
+S.forEach(s=>{
+ const el=document.createElement("section");el.className="slide";el.style.setProperty("--n",s.c.length);
+ const words=s.h.split(" ").map((w,j)=>'<span class="w" style="--w:'+(j+1)+'">'+w+"</span>").join(" ");
+ 
+ // Add class for 6-card layout if needed
+ const gridClass = s.c.length === 6 ? "cards six-cards" : "cards";
+ 
+ el.innerHTML='<div class="head"><div class="eb"><span class="w" style="--w:0">'+s.e+"</span></div><h2>"+words+'</h2></div><div class="'+gridClass+'">'+
+ s.c.map((c,j)=>'<div class="card" style="--i:'+j+'"><div class="t">'+c[0]+"</div><h3>"+c[1]+"</h3><p>"+c[2]+'</p><div class="glow"></div></div>').join("")+"</div>";
+ stage.appendChild(el);dots.appendChild(document.createElement("i"));
+});
+const slides=[...stage.children],dd=[...dots.children];
+const cardsOf=i=>slides[i].querySelectorAll(".card");
+let cur=0,ph=0,lock=true;
+const unlock=ms=>setTimeout(()=>{lock=false},ms);
+
+function showCard(){
+ const s=slides[cur];lock=true;hint.classList.add("hide");
+ s.style.setProperty("--sg","0s");
+ if(ph===0){s.style.setProperty("--hd","0s");s.style.setProperty("--cd",".7s");s.classList.add("rev")}
+ else s.style.setProperty("--cd","0s");
+ cardsOf(cur)[ph].classList.add("show");ph++;
+ unlock(ph===1?1300:700);
+}
+function hideCard(){
+ ph--;cardsOf(cur)[ph].classList.remove("show");
+ if(ph===0)slides[cur].classList.remove("rev");
+ lock=true;unlock(700);
+}
+function goTo(n,dir,full){
+ if(lock||n<0||n>=S.length||n===cur)return;
+ lock=true;hint.classList.add("hide");
+ const o=slides[cur],t=slides[n],cs=cardsOf(n);
+ o.style.setProperty("--x",-dir);o.classList.remove("on");o.classList.add("out");
+ clearTimeout(o._t);o._t=setTimeout(()=>o.classList.remove("out"),2400);
+ clearTimeout(t._t);
+ t.classList.add("nt");t.classList.remove("on",
